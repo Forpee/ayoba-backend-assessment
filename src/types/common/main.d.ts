@@ -1,5 +1,5 @@
 interface Track {
-    id: string;
+    id?: string;
     name: string;
     album: string;
     artist: string;
@@ -9,7 +9,7 @@ interface Track {
 }
 
 interface Playlist {
-    id: string;
+    id?: string;
     name: string;
     creator: string;
     playTime: number;
