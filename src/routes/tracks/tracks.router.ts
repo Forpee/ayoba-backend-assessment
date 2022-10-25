@@ -1,6 +1,7 @@
 import express from "express";
 import {
     httpAddNewTrack,
+    httpDeleteTrackById,
     httpGetAllTracks,
     httpGetTrackById,
     httpUpdateTrackById,
@@ -12,5 +13,6 @@ tracksRouter.get("/", httpGetAllTracks);
 tracksRouter.post("/", httpAddNewTrack);
 tracksRouter.get("/:id", httpGetTrackById);
 tracksRouter.put("/:id", httpUpdateTrackById);
+tracksRouter.delete("/:id", httpDeleteTrackById);
 
 export default tracksRouter;

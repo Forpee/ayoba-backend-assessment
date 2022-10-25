@@ -25,3 +25,4 @@ export const httpAddNewTrack = (req: Request, res: Response) => {
 
 export const httpGetTrackById = () => {};
 export const httpUpdateTrackById = () => {};
+export const httpDeleteTrackById = () => {};
