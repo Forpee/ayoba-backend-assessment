@@ -56,6 +56,7 @@ export const httpAddTracksToPlaylist = (req: Request, res: Response) => {
     const { id: playlistID } = req.params;
     const { trackIDs } = req.body;
 
+    let delta = 0;
     if (!existsPlaylistWithId(playlistID)) {
         return res.status(404).json({ error: "Playlist not found" });
     }
@@ -63,15 +64,16 @@ export const httpAddTracksToPlaylist = (req: Request, res: Response) => {
     if (!Array.isArray(trackIDs)) {
         return res.status(400).json({ error: "Invalid track IDs" });
     }
-
+    
     trackIDs.forEach((trackID) => {
         if (!existsTrackWithId(trackID)) {
             return res.status(404).json({ error: "Track not found" });
         }
         tracksToAdd.push(getTrackById(trackID));
+        delta+=getTrackById(trackID).duration;
     });
 
-    return res.status(200).json(addTracksToPlaylist(playlistID, tracksToAdd));
+    return res.status(200).json(addTracksToPlaylist(delta, playlistID, tracksToAdd));
 };
 
 export const httpDeletePlaylistById = (req: Request, res: Response) => {
