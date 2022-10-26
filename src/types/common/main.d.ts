@@ -3,7 +3,7 @@ interface Track {
     name: string;
     album: string;
     artist: string;
-    duration: number;
+    duration: number; // in seconds
     artwork: string;
     audio: string;
 }
@@ -12,6 +12,6 @@ interface Playlist {
     id?: string;
     name: string;
     creator: string;
-    playtime: number;
+    playtime: number; // in seconds
     trackList: Track[];
 }
