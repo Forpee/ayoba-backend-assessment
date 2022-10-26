@@ -4,8 +4,8 @@ interface Track {
     album: string;
     artist: string;
     duration: number; // in seconds
-    artwork: string;
-    audio: string;
+    artwork: string; // url
+    audio: string; // url
 }
 
 interface Playlist {

@@ -64,13 +64,13 @@ export const httpAddTracksToPlaylist = (req: Request, res: Response) => {
     if (!Array.isArray(trackIDs)) {
         return res.status(400).json({ error: "Invalid track IDs" });
     }
-    
+
     trackIDs.forEach((trackID) => {
         if (!existsTrackWithId(trackID)) {
             return res.status(404).json({ error: "Track not found" });
         }
         tracksToAdd.push(getTrackById(trackID));
-        addedTime+=getTrackById(trackID).duration;
+        addedTime += getTrackById(trackID).duration;
     });
 
     return res.status(200).json(addTracksToPlaylist(addedTime, playlistID, tracksToAdd));
