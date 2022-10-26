@@ -12,7 +12,7 @@ const tracksRouter = express.Router();
 tracksRouter.get("/", httpGetAllTracks);
 tracksRouter.post("/", httpAddNewTrack);
 tracksRouter.get("/:id", httpGetTrackById);
-tracksRouter.put("/:id", httpUpdateTrackById);
+tracksRouter.patch("/:id", httpUpdateTrackById);
 tracksRouter.delete("/:id", httpDeleteTrackById);
 
 export default tracksRouter;
