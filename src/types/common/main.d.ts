@@ -12,6 +12,6 @@ interface Playlist {
     id?: string;
     name: string;
     creator: string;
-    playTime: number;
+    playtime: number;
     trackList: Track[];
 }

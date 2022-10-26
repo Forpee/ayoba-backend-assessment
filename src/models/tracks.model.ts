@@ -6,21 +6,45 @@ export const existsTrackWithId = (id: string) => tracks.has(id);
 
 export const getAllTracks = () => Array.from(tracks.values());
 
-export const addNewTrack = (trackData: Track): Track => {
-    const newTrack = {
+export const addNewTrack = ({
+    name,
+    album,
+    artist,
+    duration,
+    artwork,
+    audio,
+}: Track): Track => {
+    const newTrack: Track = {
         id: randomUUID(),
-        ...trackData,
+        name,
+        album,
+        artist,
+        duration,
+        artwork,
+        audio,
     };
 
-    tracks.set(newTrack.id, newTrack);
+    tracks.set(newTrack.id as string, newTrack);
     return newTrack;
 };
 
 export const getTrackById = (id: string): Track => tracks.get(id) as Track;
 
-export const updateTrackById = (id: string, trackData: Track): Track => {
-    const updatedTrack = {
-        ...trackData,
+export const updateTrackById = (id: string, {
+    name,
+    album,
+    artist,
+    duration,
+    artwork,
+    audio,
+}: Track): Track => {
+    const updatedTrack: Track = {
+        name,
+        album,
+        artist,
+        duration,
+        artwork,
+        audio,
         id,
     };
 
