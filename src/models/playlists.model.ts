@@ -37,13 +37,13 @@ export const updatePlaylistById = (
 };
 
 export const addTracksToPlaylist = (
-    delta: number,
+    addedTime: number,
     id: string,
     tracksToAdd: Track[],
 ): Playlist => {
     const playlist = getPlaylistById(id);
     playlist.trackList = [...playlist.trackList, ...tracksToAdd];
-    playlist.playtime += delta;
+    playlist.playtime += addedTime;
     return playlist;
 };
 
