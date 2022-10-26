@@ -9,9 +9,7 @@ import {
 } from "../../models/tracks.model";
 import { isTrack } from "../../utils/typeguards";
 
-export const httpGetAllTracks = (req: Request, res: Response) => {
-    return res.status(200).json(getAllTracks());
-};
+export const httpGetAllTracks = (req: Request, res: Response) => res.status(200).json(getAllTracks());
 
 export const httpAddNewTrack = (req: Request, res: Response) => {
     const trackData = req.body;

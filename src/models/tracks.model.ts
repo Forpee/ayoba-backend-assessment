@@ -2,13 +2,9 @@ import { randomUUID } from "crypto";
 
 const tracks = new Map<string, Track>();
 
-export const existsTrackWithId = (id: string) => {
-    return tracks.has(id);
-};
+export const existsTrackWithId = (id: string) => tracks.has(id);
 
-export const getAllTracks = () => {
-    return Array.from(tracks.values());
-};
+export const getAllTracks = () => Array.from(tracks.values());
 
 export const addNewTrack = (trackData: Track): Track => {
     const newTrack = {
@@ -20,9 +16,7 @@ export const addNewTrack = (trackData: Track): Track => {
     return newTrack;
 };
 
-export const getTrackById = (id: string): Track => {
-    return tracks.get(id) as Track;
-};
+export const getTrackById = (id: string): Track => tracks.get(id) as Track;
 
 export const updateTrackById = (id: string, trackData: Track): Track => {
     const updatedTrack = {

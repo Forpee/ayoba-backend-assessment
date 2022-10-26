@@ -2,13 +2,9 @@ import { randomUUID } from "crypto";
 
 const playlists = new Map<string, Playlist>();
 
-export const existsPlaylistWithId = (id: string) => {
-    return playlists.has(id);
-};
+export const existsPlaylistWithId = (id: string) => playlists.has(id);
 
-export const getAllPlaylists = () => {
-    return Array.from(playlists.values());
-};
+export const getAllPlaylists = () => Array.from(playlists.values());
 
 export const addNewPlaylist = (playlistData: Playlist): Playlist => {
     const newPlaylist = {
@@ -20,13 +16,11 @@ export const addNewPlaylist = (playlistData: Playlist): Playlist => {
     return newPlaylist;
 };
 
-export const getPlaylistById = (id: string): Playlist => {
-    return playlists.get(id) as Playlist;
-};
+export const getPlaylistById = (id: string): Playlist => playlists.get(id) as Playlist;
 
 export const updatePlaylistById = (
     id: string,
-    playlistData: Playlist
+    playlistData: Playlist,
 ): Playlist => {
     const updatedPlaylist = {
         id,
@@ -39,7 +33,7 @@ export const updatePlaylistById = (
 
 export const addTracksToPlaylist = (
     id: string,
-    tracksToAdd: Track[]
+    tracksToAdd: Track[],
 ): Playlist => {
     const playlist = getPlaylistById(id);
     playlist.trackList = [...playlist.trackList, ...tracksToAdd];
