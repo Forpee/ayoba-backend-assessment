@@ -8,3 +8,12 @@ export const isTrack = (track: any): track is Track => {
         track.audio
     );
 };
+
+export const isPlaylist = (playlist: any): playlist is Playlist => {
+    return (
+        playlist.name &&
+        playlist.creator &&
+        playlist.playTime &&
+        playlist.trackList
+    );
+};

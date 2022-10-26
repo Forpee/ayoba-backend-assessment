@@ -10,7 +10,7 @@ import {
 import { isTrack } from "../../utils/typeguards";
 
 export const httpGetAllTracks = (req: Request, res: Response) => {
-    res.status(200).json(getAllTracks());
+    return res.status(200).json(getAllTracks());
 };
 
 export const httpAddNewTrack = (req: Request, res: Response) => {
@@ -22,18 +22,19 @@ export const httpAddNewTrack = (req: Request, res: Response) => {
         });
     }
 
-    const newTrack = addNewTrack(trackData);
-    res.status(201).json(newTrack);
+    return res.status(201).json(addNewTrack(trackData));
 };
 
 export const httpGetTrackById = (req: Request, res: Response) => {
     const { id } = req.params;
-    const track = getTrackById(id);
-    if (track) {
-        res.status(200).json(track);
-    } else {
-        res.status(404).json({ error: "Track not found" });
+
+    if (existsTrackWithId(id)) {
+        return res.status(404).json({
+            error: "Track not found",
+        });
     }
+
+    return res.status(200).json(getTrackById(id));
 };
 
 export const httpUpdateTrackById = (req: Request, res: Response) => {
@@ -46,18 +47,19 @@ export const httpUpdateTrackById = (req: Request, res: Response) => {
             .json({ error: "Missing required track property" });
     }
 
-    if (existsTrackWithId(id)) {
-        const updatedTrack = updateTrackById(id, trackData);
-        res.status(200).json(updatedTrack);
-    } else {
-        res.status(404).json({ error: "Track not found" });
+    if (!existsTrackWithId(id)) {
+        return res.status(404).json({ error: "Track not found" });
     }
+    return res.status(200).json(updateTrackById(id, trackData));
 };
 
 export const httpDeleteTrackById = (req: Request, res: Response) => {
     const { id } = req.params;
-    if (existsTrackWithId(id)) {
-        deleteTrackById(id);
-        res.status(200).json({ message: "Track deleted" });
+
+    if (!existsTrackWithId(id)) {
+        return res.status(404).json({ error: "Track not found" });
     }
+
+    deleteTrackById(id);
+    return res.status(200).json({ message: "Track deleted" });
 };

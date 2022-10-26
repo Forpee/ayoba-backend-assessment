@@ -20,8 +20,8 @@ export const addNewTrack = (trackData: Track): Track => {
     return newTrack;
 };
 
-export const getTrackById = (id: string): Track | undefined => {
-    return tracks.get(id);
+export const getTrackById = (id: string): Track => {
+    return tracks.get(id) as Track;
 };
 
 export const updateTrackById = (id: string, trackData: Track): Track => {
