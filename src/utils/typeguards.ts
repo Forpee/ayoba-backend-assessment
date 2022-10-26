@@ -10,6 +10,5 @@ export const isTrack = (track: any): track is Track => (
 export const isPlaylist = (playlist: any): playlist is Playlist => (
     playlist.name
         && playlist.creator
-        && playlist.playtime
-        && playlist.trackList
+        && playlist.description
 );

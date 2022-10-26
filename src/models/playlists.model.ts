@@ -7,12 +7,13 @@ export const existsPlaylistWithId = (id: string) => playlists.has(id);
 export const getAllPlaylists = () => Array.from(playlists.values());
 
 export const addNewPlaylist = ({
-    name, creator,
+    name, creator, description,
 }: Playlist): Playlist => {
     const newPlaylist:Playlist = {
         id: randomUUID(),
         name,
         creator,
+        description,
         playtime: 0,
         trackList: [],
     };
@@ -28,11 +29,13 @@ export const updatePlaylistById = (
     {
         name,
         creator,
+        description,
     }: Playlist,
 ): Playlist => {
     const playlistToUpdate = getPlaylistById(id);
     playlistToUpdate.name = name;
     playlistToUpdate.creator = creator;
+    playlistToUpdate.description = description;
     return playlistToUpdate;
 };
 
