@@ -53,7 +53,7 @@ export const httpUpdatePlaylistById = (req: Request, res: Response) => {
 export const httpAddTracksToPlaylist = (req: Request, res: Response) => {
     const tracksToAdd: Track[] = [];
 
-    const { playlistID } = req.params;
+    const { id: playlistID } = req.params;
     const { trackIDs } = req.body;
 
     if (!existsPlaylistWithId(playlistID)) {
