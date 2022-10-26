@@ -37,6 +37,15 @@ export const updatePlaylistById = (
     return updatedPlaylist;
 };
 
+export const addTracksToPlaylist = (
+    id: string,
+    tracksToAdd: Track[]
+): Playlist => {
+    const playlist = getPlaylistById(id);
+    playlist.trackList = [...playlist.trackList, ...tracksToAdd];
+    return playlist;
+};
+
 export const deletePlaylistById = (id: string) => {
     playlists.delete(id);
 };

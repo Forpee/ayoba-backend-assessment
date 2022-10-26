@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 import {
     addNewPlaylist,
+    addTracksToPlaylist,
     deletePlaylistById,
     existsPlaylistWithId,
     getAllPlaylists,
     getPlaylistById,
     updatePlaylistById,
 } from "../../models/playlists.model";
+import { existsTrackWithId, getTrackById } from "../../models/tracks.model";
 import { isPlaylist } from "../../utils/typeguards";
 
 export const httpGetAllPlaylists = (req: Request, res: Response) => {
@@ -48,6 +50,30 @@ export const httpUpdatePlaylistById = (req: Request, res: Response) => {
     }
 
     return res.status(200).json(updatePlaylistById(id, playlistData));
+};
+
+export const httpAddTracksToPlaylist = (req: Request, res: Response) => {
+    const tracksToAdd: Track[] = [];
+
+    const { playlistID } = req.params;
+    const { trackIDs } = req.body;
+
+    if (!existsPlaylistWithId(playlistID)) {
+        return res.status(404).json({ error: "Playlist not found" });
+    }
+
+    if (!Array.isArray(trackIDs)) {
+        return res.status(400).json({ error: "Invalid track IDs" });
+    }
+
+    for (const trackID of trackIDs) {
+        if (!existsTrackWithId(trackID)) {
+            return res.status(404).json({ error: "Track not found" });
+        }
+        tracksToAdd.push(getTrackById(trackID));
+    }
+
+    return res.status(200).json(addTracksToPlaylist(playlistID, tracksToAdd));
 };
 
 export const httpDeletePlaylistById = (req: Request, res: Response) => {
