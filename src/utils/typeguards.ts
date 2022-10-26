@@ -2,6 +2,7 @@ export const isTrack = (track: any): track is Track => (
     track.name
         && track.album
         && track.artist
+        && track.releaseDate
         && track.duration
         && track.artwork
         && track.audio

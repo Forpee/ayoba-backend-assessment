@@ -3,6 +3,7 @@ interface Track {
     name: string;
     album: string;
     artist: string;
+    releaseDate: Date | string;
     duration: number; // in seconds
     artwork: string; // url
     audio: string; // url
