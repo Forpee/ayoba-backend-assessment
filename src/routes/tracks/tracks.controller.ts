@@ -26,7 +26,7 @@ export const httpAddNewTrack = (req: Request, res: Response) => {
 export const httpGetTrackById = (req: Request, res: Response) => {
     const { id } = req.params;
 
-    if (existsTrackWithId(id)) {
+    if (!existsTrackWithId(id)) {
         return res.status(404).json({
             error: "Track not found",
         });
