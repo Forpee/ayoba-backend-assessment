@@ -20,8 +20,8 @@ export const getTrackById = (id: string): Track => tracks.get(id) as Track;
 
 export const updateTrackById = (id: string, trackData: Track): Track => {
     const updatedTrack = {
-        id,
         ...trackData,
+        id,
     };
 
     tracks.set(id, updatedTrack);
