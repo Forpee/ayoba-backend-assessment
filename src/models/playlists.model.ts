@@ -7,7 +7,9 @@ export const existsPlaylistWithId = (id: string) => playlists.has(id);
 export const getAllPlaylists = () => Array.from(playlists.values());
 
 export const addNewPlaylist = ({
-    name, creator, description,
+    name,
+    creator,
+    description,
 }: Playlist): Playlist => {
     const newPlaylist:Playlist = {
         id: randomUUID(),
@@ -46,8 +48,6 @@ export const addTracksToPlaylist = (
 ): Playlist => {
     const playlist = getPlaylistById(id);
     playlist.trackList = [...playlist.trackList, ...tracksToAdd];
-    
-    // add the total duration of the added tracks to the playlists playtime
     playlist.playtime += addedTime;
     return playlist;
 };
