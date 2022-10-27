@@ -16,7 +16,6 @@ module.exports = {
     "@typescript-eslint",
   ],
   rules: {
-    "max-len": ["error", { "code": 110, "tabWidth": 4 }],
     "no-undef": "off", // TypeScript will check this
     "no-unused-vars": "off", // TypeScript will check this
     "linebreak-style": ["error", "windows"],

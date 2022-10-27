@@ -11,7 +11,9 @@ import {
 import { existsTrackWithId, getTrackById } from "../../models/tracks.model";
 import { isPlaylist } from "../../utils/typeguards";
 
-export const httpGetAllPlaylists = (req: Request, res: Response) => res.status(200).json(getAllPlaylists());
+export const httpGetAllPlaylists = (req: Request, res: Response) => (
+    res.status(200).json(getAllPlaylists())
+);
 
 export const httpAddNewPlaylist = (req: Request, res: Response) => {
     const playlistData = req.body;

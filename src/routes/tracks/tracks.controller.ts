@@ -10,7 +10,9 @@ import {
 import isValidDate from "../../utils/helpers";
 import { isTrack } from "../../utils/typeguards";
 
-export const httpGetAllTracks = (req: Request, res: Response) => res.status(200).json(getAllTracks());
+export const httpGetAllTracks = (req: Request, res: Response) => (
+    res.status(200).json(getAllTracks())
+);
 
 export const httpAddNewTrack = (req: Request, res: Response) => {
     const trackData = req.body;
@@ -21,7 +23,9 @@ export const httpAddNewTrack = (req: Request, res: Response) => {
         });
     }
 
-    if (isValidDate(trackData.releaseDate)) {
+    trackData.releaseDate = new Date(trackData.releaseDate);
+
+    if (!isValidDate(trackData.releaseDate)) {
         return res.status(400).json({
             error: "Invalid release date",
         });
@@ -55,6 +59,8 @@ export const httpUpdateTrackById = (req: Request, res: Response) => {
     if (!existsTrackWithId(id)) {
         return res.status(404).json({ error: "Track not found" });
     }
+
+    trackData.releaseDate = new Date(trackData.releaseDate);
 
     if (isValidDate(trackData.releaseDate)) {
         return res.status(400).json({
